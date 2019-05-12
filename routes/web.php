@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// ユーザのページ
+Route::get('/@{username}', 'UserPageController@showUserPage');
+
+// ツイートの操作
+Route::post('/tweet/post', 'TweetController@postTweet');
+Route::post('/tweet/edit', 'TweetController@editTweet');
+Route::post('/tweet/delete', 'TweetController@deleteTweet');
