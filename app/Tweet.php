@@ -47,4 +47,9 @@ class Tweet extends Model
     			->leftJoin('users', 'tweets.user_id', '=', 'users.id')
     			->where('name', $username)->get();
     }
+
+    // 自分以外のユーザのツイートを全て取得する
+    public static function getTheOtherUsersTweetById($user_id){
+		return self::where('user_id', '!=', $user_id)->get();
+    }
 }

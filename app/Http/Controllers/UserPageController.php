@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// 使用するユーザ定義モデル
 use \App\Tweet;
 use \App\User;
 

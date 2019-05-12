@@ -22,6 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 // ユーザのページ
 Route::get('/@{username}', 'UserPageController@showUserPage');
 
+// タイムラインの表示
+Route::get('/timeline', 'TimelineController@showTimelinePage');
+
 // ツイートの操作
 Route::post('/tweet/post', 'TweetController@postTweet');
 Route::post('/tweet/edit', 'TweetController@editTweet');
