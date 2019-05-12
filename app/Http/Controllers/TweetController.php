@@ -16,7 +16,7 @@ class TweetController extends Controller
     		'tweet_body' => ['required', 'string', 'max:280'],
     	]);
     	
-    	// DBに追加
+    	// 新しいツイート
     	Tweet::newTweet(Auth::user()->id, $request->tweet_body);
 
     	// 元のページに戻る
@@ -24,13 +24,32 @@ class TweetController extends Controller
     }
 
     // ツイートの編集
-    public function editTweet(){
+    public function editTweet(Request $request){
+    	// POST内容の検証
+    	$validator = $request->validate([
+    		'tweet_id' => ['required', 'integer'],
+    		'tweet_body' => ['required', 'string', 'max:280'],
+    	]);
 
+    	// ツイートを編集
+    	Tweet::editTweet(Auth::user()->id, $request->tweet_id, $request->tweet_body);
+
+    	// 元のページに戻る
+		return back();
     }
 
     // ツイートの削除
-    public function deleteTweet(){
+    public function deleteTweet(Request $request){
+    	// POST内容の検証
+    	$validator = $request->validate([
+    		'tweet_id' => ['required', 'integer'],
+    	]);
 
+    	// ツイートを削除
+    	Tweet::deleteTweet(Auth::user()->id, $request->tweet_id);
+
+    	// 元のページに戻る
+		return back();
     }
 
 

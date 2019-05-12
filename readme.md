@@ -57,6 +57,17 @@ TweetControllerを作成，
 ツイートの投稿のメソッドを実装．
 
 
+##### ツイート編集・削除 #####
+JSが必要になるのでMixをインストール
+$ npm install
+
+webpack.mix.jsを編集
+
+vue.jsも覚えてみたいけど，今回は時間がないのでひとまず使い慣れたjQuery使う．
+
+コントローラとモデルを編集．
+
+
 ###### 参考 ######
 Laravelプロジェクトの作成方法
 https://qiita.com/da-sugi/items/7ee7a458aad4209bab01
@@ -79,3 +90,10 @@ https://www.msng.info/archives/2016/01/laravel-blade-braces-dont-always-escape.p
 
 LaravelからのDBアクセス
 https://www.ritolab.com/entry/93
+
+JSとCSSのMixの設定
+https://www.ritolab.com/entry/30				// 情報が古い．要適宜読み替え
+https://readouble.com/laravel/5.8/ja/mix.html	// 公式
+
+LaravelのPOST内容のvalidatin
+https://qiita.com/fagai/items/9904409d3703ef6f79a2
