@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // ユーザの存在確認
+    // 後々正規表現検索とかできるように条件式は 0より大きい にしとく
+    public static function usernameExists($username){
+        return self::where('name', $username)->count() > 0;
+    }
+
+    
 }

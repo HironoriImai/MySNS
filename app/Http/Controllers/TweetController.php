@@ -17,10 +17,7 @@ class TweetController extends Controller
     	]);
     	
     	// DBに追加
-    	Tweet::create([
-    		'user_id'	=> Auth::user()->id,
-    		'tweet_body'=> $request->tweet_body,
-    	]);
+    	Tweet::newTweet(Auth::user()->id, $request->tweet_body);
 
     	// 元のページに戻る
 		return back();
