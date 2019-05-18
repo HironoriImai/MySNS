@@ -78,6 +78,18 @@ TimelineControllerを作成，ルーティングを作成
 要確認．140字の全角半角と一緒に確認する．
 
 
+##### API Tokenを用いた認証 #####
+migrationファイルを直接編集，migration:rollbackしてから再度migration．
+別の方法として，新たにテーブル編集のマイグレーションファイルを作る方法もある．
+
+homeビューを編集してapi_tokenの発行フォームを作成
+
+デフォルトの /api/user を叩いて応答があることを確認
+
+##### APIの実装 #####
+
+
+
 ###### 参考 ######
 Laravelプロジェクトの作成方法
 https://qiita.com/da-sugi/items/7ee7a458aad4209bab01
@@ -107,3 +119,7 @@ https://readouble.com/laravel/5.8/ja/mix.html	// 公式
 
 LaravelのPOST内容のvalidatin
 https://qiita.com/fagai/items/9904409d3703ef6f79a2
+
+Laravelでのapi_tokenを使った認証
+https://qiita.com/zaburo/items/57657c78f54accf400f6
+https://qiita.com/ayasamind/items/abadb9737e9d6480806b

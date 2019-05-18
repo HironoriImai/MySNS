@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home/generate_api_token', 'HomeController@generateApiToken');
 
 // ユーザのページ
 Route::get('/@{username}', 'UserPageController@showUserPage');

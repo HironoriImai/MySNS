@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'api_token',
     ];
 
     /**
@@ -25,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token',
     ];
 
     /**
@@ -44,5 +45,17 @@ class User extends Authenticatable
         return self::where('name', $username)->count() > 0;
     }
 
-    
+    // api_tokenの作成
+    public static function generateAPIToken($user_id){
+        $api_token = null;
+        $user = self::find((int)$user_id);
+        // 結果が存在した時
+        if($user->count()>0){
+            // api_token（32文字の乱数）を発行
+            $api_token = md5(uniqid(rand(), true));
+            $user->update(['api_token' => $api_token]);
+        }
+        // api_token（$user_idが不正なときはnull）を返す
+        return $api_token;
+    }
 }
