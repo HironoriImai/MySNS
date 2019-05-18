@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware'=>'api'], function(){
+	// タイムラインの表示
+	Route::middleware('auth:api')->post('/timeline', 'Api\TimelineController@showTimeline');
+
+	// ツイートの操作
+	Route::middleware('auth:api')->post('/tweet/post', 'Api\TweetController@postTweet');
+	Route::middleware('auth:api')->post('/tweet/edit', 'Api\TweetController@editTweet');
+	Route::middleware('auth:api')->post('/tweet/delete', 'Api\TweetController@deleteTweet');
+});
