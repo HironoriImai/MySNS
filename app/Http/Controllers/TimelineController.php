@@ -8,7 +8,7 @@ use \App\Tweet;
 
 class TimelineController extends Controller
 {
-    public function showTimelinePage(){
+    public function showAllUserTimelinePage(){
     	$tweets = Tweet::getTheOtherUsersTweetById(Auth::user()->id);
     	return view('timeline', compact('tweets'));
     }

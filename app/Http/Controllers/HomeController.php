@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \App\User;
+use \App\Tweet;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // ユーザのツイート一覧
+        $tweets = Tweet::getTweetsByUserId(Auth::user()->id);
+        // apiトークン
         $api_token = Auth::user()->api_token;
-        return view('home', compact(['api_token']));
+        return view('home', compact(['api_token', 'tweets']));
     }
 
     // api_tokenの生成

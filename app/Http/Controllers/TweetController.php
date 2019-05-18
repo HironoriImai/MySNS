@@ -12,11 +12,11 @@ class TweetController extends Controller
     public function postTweet(Request $request){
     	// POST内容の検証
     	$validator = $request->validate([
-    		'tweet_body' => ['required', 'string', 'max:280'],
+    		'tweet_body' => ['required', 'string', 'max:140'],
     	]);
     	
     	// 新しいツイート
-    	Tweet::newTweet(Auth::user()->id, $request->tweet_body);
+    	Tweet::postTweet(Auth::user()->id, $request->tweet_body);
 
     	// 元のページに戻る
 		return back();
@@ -27,7 +27,7 @@ class TweetController extends Controller
     	// POST内容の検証
     	$validator = $request->validate([
     		'tweet_id' => ['required', 'integer'],
-    		'tweet_body' => ['required', 'string', 'max:280'],
+    		'tweet_body' => ['required', 'string', 'max:140'],
     	]);
 
     	// ツイートを編集
