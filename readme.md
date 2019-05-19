@@ -123,3 +123,10 @@ https://qiita.com/fagai/items/9904409d3703ef6f79a2
 Laravelでのapi_tokenを使った認証
 https://qiita.com/zaburo/items/57657c78f54accf400f6
 https://qiita.com/ayasamind/items/abadb9737e9d6480806b
+
+Laravel+PHPUnitでテスト
+https://qiita.com/zaburo/items/839c81a1e166a48fe3fa
+ログイン処理が必要なページ・メソッドのテスト
+https://qiita.com/acro5piano/items/924d7b0e6d331471b631
+テストデータ（シード）の登録
+https://qiita.com/n-oota/items/e1890a6451fe33fb25f6

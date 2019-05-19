@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware'=>'api'], function(){
 	// タイムラインの表示
-	Route::middleware('auth:api')->post('/timeline', 'Api\TimelineController@showTimeline');
+	Route::middleware('auth:api')->post('/timeline', 'Api\TimelineController@showAllUserTimeline');
 
 	// ツイートの操作
 	Route::middleware('auth:api')->post('/tweet/post', 'Api\TweetController@postTweet');

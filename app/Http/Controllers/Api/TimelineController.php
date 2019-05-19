@@ -9,7 +9,7 @@ use \App\Tweet;
 
 class TimelineController extends Controller
 {
-    public function showTimeline(Request $request){
+    public function showAllUserTimeline(Request $request){
     	$tweets = Tweet::getTheOtherUsersTweetById($request->user()->id);
     	return [
     		'error' => 0,

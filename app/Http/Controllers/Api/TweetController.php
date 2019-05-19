@@ -30,8 +30,8 @@ class TweetController extends Controller
     		'tweet_id' => ['required', 'integer'],
     		'tweet_body' => ['required', 'string', 'max:140'],
     	]);
-        var_dump($request->tweet_id);
-    	// ツイートを編集
+        
+        // ツイートを編集
     	Tweet::editTweet($request->user()->id, $request->tweet_id, $request->tweet_body);
 
     	// 応答json
