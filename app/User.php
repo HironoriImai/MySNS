@@ -74,15 +74,12 @@ class User extends Authenticatable
     }
 
     // 自己紹介文の取得
-    public static function getSelfIntroduction($user_id, $self_introduction){
-        $user = self::find((int)$user_id);
+    public static function getUserInfoFromUsername($username){
+        $user = self::where('name', $username)->first();
         // 結果が存在した時
         if($user->count()>0){
-            // api_token（32文字の乱数）を発行
-            $user->fill(['self_introduction' => $self_introduction])->save();
-            return true;
+            return $user;
         }else{
-            // api_token（$user_idが不正なときはnull）を返す
             return null;
         }
     }

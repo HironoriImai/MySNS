@@ -34,4 +34,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // ユーザのページ
-// Route::get('/@{username}', 'UserPageController@showUserPage');
+Route::get('/@{username}', 'UserPageController@showUserPage');
