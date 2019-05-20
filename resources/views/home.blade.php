@@ -18,6 +18,18 @@
                         <input type="submit" value="新規API Tokenを作成">
                     </form>
                 </div>
+                <!-- 自己紹介文 -->
+                <div class="card-header">自己紹介</div>
+                <div class="card-body">
+                    <form method="post" action="/home/register_self_introduction">
+                        {{ csrf_field() }}
+                        <textarea name="self_introduction" style="width:100%">{{ $self_introduction }}</textarea>
+                        <div style="text-align:right">
+                            <input type="submit" value="自己紹介を更新">
+                        </div>
+                    </form>
+                </div>
+                <!-- ほかページへのリンク -->
                 <div class="card-header">The Other Users' Tweets</div>
                 <div class="card-body">
                     <a href="/timeline_all_user">他の全てのユーザの投稿を表示</a>

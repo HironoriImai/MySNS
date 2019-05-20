@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     // マイページ画面
     Route::get('/home', 'HomeController@index')->name('home');
 	Route::post('/home/generate_api_token', 'HomeController@generateApiToken');
+	Route::post('/home/register_self_introduction', 'HomeController@registerSelfIntroduction');
 
 	// タイムラインの表示
 	Route::get('/timeline_all_user', 'TimelineController@showAllUserTimelinePage');

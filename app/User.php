@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'api_token',
+        'name', 'email', 'password', 'api_token', 'self_introduction', 'is_private',
     ];
 
     /**
@@ -57,5 +57,33 @@ class User extends Authenticatable
         }
         // api_token（$user_idが不正なときはnull）を返す
         return $api_token;
+    }
+
+    // 自己紹介文の登録
+    public static function setSelfIntroduction($user_id, $introduction_body){
+        $user = self::find((int)$user_id);
+        // 結果が存在した時
+        if($user->count()>0){
+            // api_token（32文字の乱数）を発行
+            $user->fill(['self_introduction' => $introduction_body])->save();
+            return true;
+        }else{
+            // api_token（$user_idが不正なときはnull）を返す
+            return null;
+        }
+    }
+
+    // 自己紹介文の取得
+    public static function getSelfIntroduction($user_id, $self_introduction){
+        $user = self::find((int)$user_id);
+        // 結果が存在した時
+        if($user->count()>0){
+            // api_token（32文字の乱数）を発行
+            $user->fill(['self_introduction' => $self_introduction])->save();
+            return true;
+        }else{
+            // api_token（$user_idが不正なときはnull）を返す
+            return null;
+        }
     }
 }
