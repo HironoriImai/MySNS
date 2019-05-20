@@ -10,10 +10,10 @@
                 <div class="card-body">
                     <form method="post" action="/home/generate_api_token">
                         {{ csrf_field() }}
-                        @if ($api_token===null)
+                        @if (Auth::user()->api_token===null)
                             <input type="text" readonly>
                         @else
-                            <input type="text" value="{{ $api_token }}" style="width: 300px;" readonly>
+                            <input type="text" value="{{ Auth::user()->api_token }}" style="width: 300px;" readonly>
                         @endif
                         <input type="submit" value="新規API Tokenを作成">
                     </form>
@@ -23,10 +23,24 @@
                 <div class="card-body">
                     <form method="post" action="/home/register_self_introduction">
                         {{ csrf_field() }}
-                        <textarea name="self_introduction" style="width:100%">{{ $self_introduction }}</textarea>
+                        <textarea name="self_introduction" style="width:100%">{{ Auth::user()->self_introduction }}</textarea>
                         <div style="text-align:right">
                             <input type="submit" value="自己紹介を更新">
                         </div>
+                    </form>
+                </div>
+                <!-- プライベートアカウント -->
+                <div class="card-header">プライベートアカウント</div>
+                <div class="card-body">
+                    <form method="post" action="/home/private_setting">
+                        {{ csrf_field() }}
+                        @if (Auth::user()->is_private)
+                            <input type="hidden" name="private" value="false">
+                            <input type="submit" value="プライベートを解除">
+                        @else
+                            <input type="hidden" name="private" value="true">
+                            <input type="submit" value="プライベートに設定">
+                        @endif
                     </form>
                 </div>
                 <!-- ほかページへのリンク -->

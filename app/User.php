@@ -83,4 +83,16 @@ class User extends Authenticatable
             return null;
         }
     }
+
+    // プライベート設定の適用
+    public static function setPrivate($user_id, $private){
+        $user = self::find((int)$user_id);
+        // 結果が存在した時
+        if($user!==null && $user->count()>0){
+            $user->fill(['is_private' => $private])->save();
+            return true;
+        }else{
+            return null;
+        }
+    }
 }

@@ -28,11 +28,7 @@ class HomeController extends Controller
     {
         // ユーザのツイート一覧
         $tweets = Tweet::getTweetsByUserId(Auth::user()->id);
-        // apiトークン
-        $api_token = Auth::user()->api_token;
-        // 自己紹介文
-        $self_introduction = Auth::User()->self_introduction;
-        return view('home', compact(['api_token', 'self_introduction', 'tweets']));
+        return view('home', compact(['tweets']));
     }
 
     // api_tokenの生成
@@ -54,6 +50,20 @@ class HomeController extends Controller
         // 自己紹介文を登録
         User::setSelfIntroduction(Auth::user()->id, $request->self_introduction);
 
+        // 元のページに戻る
+        return back();
+    }
+
+    // 自己紹介文の登録
+    public function private_setting(Request $request){
+        // POST内容の検証
+        $validator = $request->validate([
+            // 'private' => ['required', 'boolean'],
+            'private' => ['required', 'in:true,false'],
+        ]);
+
+        // プライベート設定を適用
+        User::setPrivate(Auth::user()->id, $request->private==="true");
         // 元のページに戻る
         return back();
     }
