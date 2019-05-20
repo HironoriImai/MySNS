@@ -11,6 +11,23 @@
             <div class="self_introduction">
                 自己紹介：{{ $self_introduction }}
             </div>
+            @if( Auth::check() && Auth::user()->name !== $username )
+                <div class="follow">
+                    @if( \App\Follow::isFollowingUserByName(Auth::user()->name, $username) )
+                        <form method="post" action="/unfollow">
+                            {{ csrf_field() }}
+                            <input type=hidden name="username" value="{{ $username }}">
+                            <input type="submit" value="フォロー解除">
+                        </form>
+                    @else
+                        <form method="post" action="/follow">
+                            {{ csrf_field() }}
+                            <input type=hidden name="username" value="{{ $username }}">
+                            <input type="submit" value="フォロー">
+                        </form>
+                    @endif
+                </div>
+            @endif
             <div class="tweet-wrapper">
                 @foreach($tweets as $tweet)
                 <div class="tweet" data-tweet_id="{{ $tweet->tweet_id }}" style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">

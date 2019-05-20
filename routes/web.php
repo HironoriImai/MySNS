@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/tweet/post', 'TweetController@postTweet');
 	Route::post('/tweet/edit', 'TweetController@editTweet');
 	Route::post('/tweet/delete', 'TweetController@deleteTweet');
+
+	// フォロー・フォロー解除
+	Route::post('/follow', 'FollowController@followUser');
+	Route::post('/unfollow', 'FollowController@unfollowUser');
 });
 
 // ユーザのページ

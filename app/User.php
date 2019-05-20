@@ -63,7 +63,7 @@ class User extends Authenticatable
     public static function setSelfIntroduction($user_id, $introduction_body){
         $user = self::find((int)$user_id);
         // 結果が存在した時
-        if($user->count()>0){
+        if($user!==null && $user->count()>0){
             // api_token（32文字の乱数）を発行
             $user->fill(['self_introduction' => $introduction_body])->save();
             return true;
@@ -77,7 +77,7 @@ class User extends Authenticatable
     public static function getUserInfoFromUsername($username){
         $user = self::where('name', $username)->first();
         // 結果が存在した時
-        if($user->count()>0){
+        if($user!==null && $user->count()>0){
             return $user;
         }else{
             return null;
