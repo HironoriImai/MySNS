@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// タイムラインの表示
 	Route::get('/timeline_all_user', 'TimelineController@showAllUserTimelinePage');
+	Route::get('/timeline', 'TimelineController@showTimelinePage');
 
 	// ツイートの操作
 	Route::post('/tweet/post', 'TweetController@postTweet');

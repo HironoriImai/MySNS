@@ -77,4 +77,13 @@ class Tweet extends Model
                 ->leftJoin('users', 'tweets.user_id', '=', 'users.id')
                 ->where('user_id', '!=', $user_id)->orderBy('tweets.created_at', 'desc')->get();
     }
+
+    // フォローしてるユーザのツイートを取得する
+    public static function getFollowUsersTweetById($user_id, $contains_myself = false){
+        return self::select('*', 'tweets.id as tweet_id')
+                ->leftJoin('users', 'tweets.user_id', '=', 'users.id')
+                ->whereIn('user_id', function($query) use ($user_id){
+                    $query->select('follow_to')->from('follows')->where('follow_from', $user_id);
+                })->orderBy('tweets.created_at', 'desc')->get();
+    }
 }
