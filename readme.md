@@ -25,12 +25,13 @@ Laravelコマンドを使う方法もあるらしいが今回は省略．
 
 キャッシュディレクトリ等のアクセス権の変更
 
-    chmod -R 777 MySNS/bootstrap/cache
-    chmod -R 777 MySNS/storage
+    chmod -R 777 bootstrap/cache
+    chmod -R 777 storage
 
 環境変数（DB接続関連）を設定
 
-    vi MySNS/.env
+    cp .env.example .env
+    vi .env
 
 書き換える箇所は以下の通り
 
@@ -40,6 +41,17 @@ Laravelコマンドを使う方法もあるらしいが今回は省略．
     DB_DATABASE=MySNS   # ここ
     DB_USERNAME=xxxx    # ここ
     DB_PASSWORD=xxxx    # ここ
+
+gitからcloneしている場合は以下のコマンドを発行する必要がある
+
+    composer install
+    php artisan key:generate
+
+### Node.js設定
+
+Mixを使いたいので設定を行う
+
+    npm install
 
 ### DB設定
 
