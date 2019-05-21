@@ -18,6 +18,7 @@ class UserPageController extends Controller
         $self_introduction = $user->self_introduction;
     	// ユーザのツイートを取得してつぶやきを表示
     	$tweets = Tweet::getTweetsByUsername($user->name);
-    	return view('userpage', compact(['username', 'self_introduction', 'tweets']));
+        $is_private = $user->is_private;
+    	return view('userpage', compact(['username', 'self_introduction', 'is_private', 'tweets']));
     }
 }

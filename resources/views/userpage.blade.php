@@ -29,7 +29,7 @@
                 </div>
             @endif
             <div class="tweet-wrapper">
-                @if( Auth::check() && \App\Follow::isFollowingUserByName(Auth::user()->name, $username) )
+                @if( !$is_private || $is_private && Auth::check() && \App\Follow::isFollowingUserByName(Auth::user()->name, $username) )
                     @foreach($tweets as $tweet)
                     <div class="tweet" data-tweet_id="{{ $tweet->tweet_id }}" style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
                         <div>{{ $tweet->name }}</div>
